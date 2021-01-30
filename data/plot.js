@@ -1,3 +1,6 @@
+import {characters} from './characters.js';
+
+console.log(characters);
 export const plot = [
   {
     isDescription: true,
@@ -113,16 +116,6 @@ export const plot = [
     isDescription: false,
     character: "Элегантная женщина",
     text: "Я принесу телефон... (Выносит телефон в лоджию, продолжает любоваться закатом.)",
-  },
-  {
-    isDescription: false,
-    character: "Элегантный мужчина",
-    text: "(в трубку). Алло!.. Кто?.. Здравствуйте, Анна Павловна!.. Чертежи? Разве они у меня? Минутку… (Жене.) Женечка, будь добра, посмотри у меня в комнате: чертежи на столе не лежат?",
-  },
-  {
-    isDescription: true,
-    character: "",
-    text: "Элегантная женщина проходит в комнату.",
   },
   {
     isDescription: false,
