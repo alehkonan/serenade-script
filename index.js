@@ -6,7 +6,7 @@ const characterSelect = document.querySelector('#character');
 const buttonNextReplica = document.createElement('button');
 
 characters.forEach(element => {
-  const option = new Option(`${element.name}`, `${element.id}`);
+  const option = new Option(`${element.name}`, `${element.shortName}`);
   characterSelect.appendChild(option);
 });
 
@@ -27,13 +27,13 @@ function renderPlot(character = 'all') {
         </div>`
     } else if (character === element.character) {
       return `
-        <div data-character=${element.character} class="replica">
+        <div data-character=${characters.find(elem => elem.name === element.character).shortName} class="replica">
           <p class="character marked">${element.character}</p>
           <p class="text marked">${element.text}</p>
         </div>`
     } else {
       return `
-        <div data-character=${element.character} class="replica">
+        <div data-character=${characters.find(elem => elem.name === element.character).shortName} class="replica">
           <p class="character">${element.character}</p>
           <p class="text">${element.text}</p>
         </div>`
@@ -53,8 +53,19 @@ function savePosition() {
   localStorage.setItem('offsetY', window.scrollY);
 }
 
-function goToNextReplica() {
-  console.log('Переход на следующую реплику');
+function goToNextReplica(e) {
+  const selectedReplicas = Array.from(document.querySelectorAll(`[data-character=${characterSelect.value}]`));
+  const checkCondition = selectedReplicas.some(element => {
+    console.log(element.getBoundingClientRect().top);
+    element.getBoundingClientRect().top >= 0;
+  });
+  console.log(checkCondition);
+  //console.log(selectedReplicas[0].getBoundingClientRect().top);//позиция элемента  относительно window
+  //console.log(selectedReplicas[0].offsetTop);//позиция по y относительно родителя
+  //console.log(window.pageYOffset); //насколько заскролен window начало страницы
+  //console.log(window.pageYOffset + window.innerHeight); //насколько заскролен конец страницы
+  
+  //window.scrollTo(0, 94);
 }
 
 window.addEventListener('load', () => {
@@ -65,4 +76,4 @@ window.addEventListener('load', () => {
 window.addEventListener('scroll', savePosition);
 characterSelect.addEventListener('change', selectCharacter);
 
-buttonNextReplica.addEventListener('click', goToNextReplica);
+buttonNextReplica.addEventListener('click', (e) => goToNextReplica(e));

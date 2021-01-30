@@ -1,6 +1,5 @@
 import {characters} from './characters.js';
 
-console.log(characters);
 export const plot = [
   {
     isDescription: true,
@@ -14,7 +13,7 @@ export const plot = [
   },
   {
     isDescription: false,
-    character: "Женщина с  голосом",
+    character: "Женщина с голосом",
     text: "(мужу). Славик, ты помнишь, что у меня завтра концерт в филармонии?",
   },
   {
@@ -609,38 +608,33 @@ export const plot = [
   },
   {
     isDescription: false,
-    character: "Кэм",
-    text: "Так!..",
+    character: "Элегантный мужчина",
+    text: "Так!.. Посмотрим «Вечерку»...",
   },
   {
     isDescription: false,
-    character: "Кэм + Гриша",
-    text: "Посмотрим «Вечерку»...",
-  },
-  {
-    isDescription: false,
-    character: "Тёма",
+    character: "Муж Женщины с голосом",
     text: "Что пишут... «Растет Волгоградский район»...",
   },
   {
     isDescription: false,
-    character: "Саша",
+    character: "Человек с едва заметным кавказским акцентом",
     text: "Хорошо! «Открылся новый кинотеатр»...",
   },
   {
     isDescription: false,
-    character: "Гриша",
+    character: "Крепкий мужчина",
     text: "Так. «Пистолет скульптора»... ",
   },
   {
     isDescription: false,
-    character: "Кэм",
+    character: "Элегантный мужчина",
     text: "О, интересно! «Нелегкое это дело — тесать камень вручную. Именно поэтому налажен выпуск специальных камне-тесальных ручных агрегатов...» Фу, ерунда какая-то...",
   },
   {
     isDescription: false,
-    character: "все вместе",
-    text: "О, кроссворд!",
+    character: "Элегантный мужчина",
+    text: "О, (все вместе) кроссворд!",
   },
   {
     isDescription: false,
@@ -668,9 +662,9 @@ export const plot = [
     text: "(записывает). Про-ти-во-газ.",
   },
   {
-    isDescription: false,
-    character: "Мужчины на всех этажах",
-    text: "(синхронно). Подходит!",
+    isDescription: true,
+    character: "",
+    text: "Мужчины на всех этажах (синхронно). Подходит!",
   },
   {
     isDescription: false,
