@@ -74,11 +74,25 @@
   left: 25%;
   bottom: 5%;
   width: 50%;
-  height: 5%;
+  height: 2.5rem;
   background: white;
   border: none;
   border-radius: 5px;
   box-shadow: 0 3px 0 rgba(83, 83, 83, 0.479);
+  font-weight: 700;
+}
+
+.button-to-top {
+  position: fixed;
+  bottom: 5%;
+  right: 1%;
+  width: 2.5rem;
+  height: 2.5rem;
+  background: white;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 3px 0 rgba(83, 83, 83, 0.479);
+  font-weight: 700;
 }
 
 @media screen and (max-width: 500px) {
@@ -95,4 +109,8 @@
     flex-direction: column;
     justify-content: center;
   }
+}
+
+.footer {
+  height: 70px;
 }

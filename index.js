@@ -4,7 +4,7 @@ import { characters } from './data/characters.js';
 const mainElement = document.querySelector('.wrapper');
 const characterSelect = document.querySelector('#character');
 const buttonNextReplica = document.createElement('button');
-const isReplicaVisiable = false;
+const buttonToTop = document.createElement('button');
 
 characters.forEach(element => {
   const option = new Option(`${element.name}`, `${element.shortName}`);
@@ -48,6 +48,9 @@ function renderPlot(character = 'all') {
   } else if (document.querySelector('.next-replica')) {
     document.body.removeChild(buttonNextReplica);
   }
+  buttonToTop.classList.add('button-to-top');
+  buttonToTop.textContent = "вверх";
+  document.body.appendChild(buttonToTop);
 }
 
 function savePosition() {
@@ -65,14 +68,14 @@ function goToNextReplica(e) {
       posPage: element.offsetTop,
     });
   });
-  const posOfNextReplica = arrOfReplicasTop.filter(element => element.posWindow > (window.innerHeight * 0.6))[0];
+  const posOfNextReplica = arrOfReplicasTop.filter(element => element.posWindow > (window.innerHeight * 0.51))[0];
   if (posOfNextReplica) {
     window.scrollTo(0, posOfNextReplica.posPage - (window.innerHeight / 3));
   }
 }
 
-function changeButtonStatus(e) {
-  //console.log(window.scrollY);
+function goToTopp() {
+  window.scrollTo(0, 0);
 }
 
 window.addEventListener('load', () => {
@@ -80,10 +83,9 @@ window.addEventListener('load', () => {
   renderPlot(localStorage.getItem('currentCharacterName') || null);
   window.scrollTo(0, localStorage.getItem('offsetY') || 0);
 });
-window.addEventListener('scroll', (e) => {
-  savePosition();
-  changeButtonStatus(e);
-});
+window.addEventListener('scroll', savePosition);
 characterSelect.addEventListener('change', selectCharacter);
 
 buttonNextReplica.addEventListener('click', (e) => goToNextReplica(e));
+
+buttonToTop.addEventListener('click', goToTopp);
