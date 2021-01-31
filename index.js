@@ -70,12 +70,12 @@ function goToNextReplica(e) {
   });
   const posOfNextReplica = arrOfReplicasTop.filter(element => element.posWindow > (window.innerHeight * 0.51))[0];
   if (posOfNextReplica) {
-    window.scrollTo(0, posOfNextReplica.posPage - (window.innerHeight / 3));
+    window.scrollTo({top: posOfNextReplica.posPage - (window.innerHeight / 3), behavior: 'smooth'});
   }
 }
 
 function goToTopp() {
-  window.scrollTo(0, 0);
+  window.scrollTo({top: 0, behavior: 'smooth'});
 }
 
 window.addEventListener('load', () => {
