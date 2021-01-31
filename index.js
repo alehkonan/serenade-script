@@ -56,12 +56,7 @@ function savePosition() {
 
 function goToNextReplica(e) {
   const selectedReplicas = Array.from(document.querySelectorAll(`[data-character=${characterSelect.value}]`));
-  const checkCondition = selectedReplicas
-    .map(element => {
-      return element.getBoundingClientRect().top >= window.innerHeight / 3 && element.getBoundingClientRect().top < window.innerHeight;
-    })
-    .includes(true);
-  if (checkCondition) return;
+  
 
   const arrOfReplicasTop = [];
   selectedReplicas.forEach(element => {
@@ -70,7 +65,7 @@ function goToNextReplica(e) {
       posPage: element.offsetTop,
     });
   });
-  const posOfNextReplica = arrOfReplicasTop.filter(element => element.posWindow > window.innerHeight / 3)[0];
+  const posOfNextReplica = arrOfReplicasTop.filter(element => element.posWindow > (window.innerHeight * 0.6))[0];
   if (posOfNextReplica) {
     window.scrollTo(0, posOfNextReplica.posPage - (window.innerHeight / 3));
   }
