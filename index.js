@@ -4,6 +4,7 @@ import { characters } from './data/characters.js';
 const mainElement = document.querySelector('.wrapper');
 const characterSelect = document.querySelector('#character');
 const buttonNextReplica = document.createElement('button');
+const isReplicaVisiable = false;
 
 characters.forEach(element => {
   const option = new Option(`${element.name}`, `${element.shortName}`);
@@ -55,17 +56,28 @@ function savePosition() {
 
 function goToNextReplica(e) {
   const selectedReplicas = Array.from(document.querySelectorAll(`[data-character=${characterSelect.value}]`));
-  const checkCondition = selectedReplicas.some(element => {
-    console.log(element.getBoundingClientRect().top);
-    element.getBoundingClientRect().top >= 0;
+  const checkCondition = selectedReplicas
+    .map(element => {
+      return element.getBoundingClientRect().top >= window.innerHeight / 3 && element.getBoundingClientRect().top < window.innerHeight;
+    })
+    .includes(true);
+  if (checkCondition) return;
+
+  const arrOfReplicasTop = [];
+  selectedReplicas.forEach(element => {
+    arrOfReplicasTop.push({
+      posWindow: element.getBoundingClientRect().top,
+      posPage: element.offsetTop,
+    });
   });
-  console.log(checkCondition);
-  //console.log(selectedReplicas[0].getBoundingClientRect().top);//позиция элемента  относительно window
-  //console.log(selectedReplicas[0].offsetTop);//позиция по y относительно родителя
-  //console.log(window.pageYOffset); //насколько заскролен window начало страницы
-  //console.log(window.pageYOffset + window.innerHeight); //насколько заскролен конец страницы
-  
-  //window.scrollTo(0, 94);
+  const posOfNextReplica = arrOfReplicasTop.filter(element => element.posWindow > window.innerHeight / 3)[0];
+  if (posOfNextReplica) {
+    window.scrollTo(0, posOfNextReplica.posPage - (window.innerHeight / 3));
+  }
+}
+
+function changeButtonStatus(e) {
+  //console.log(window.scrollY);
 }
 
 window.addEventListener('load', () => {
@@ -73,7 +85,10 @@ window.addEventListener('load', () => {
   renderPlot(localStorage.getItem('currentCharacterName') || null);
   window.scrollTo(0, localStorage.getItem('offsetY') || 0);
 });
-window.addEventListener('scroll', savePosition);
+window.addEventListener('scroll', (e) => {
+  savePosition();
+  changeButtonStatus(e);
+});
 characterSelect.addEventListener('change', selectCharacter);
 
 buttonNextReplica.addEventListener('click', (e) => goToNextReplica(e));
